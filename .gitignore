@@ -1,0 +1,68 @@
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore the virtual environment directory (if using virtualenv or venv)
+venv/
+env/
+# If you're using poetry for dependency management, add the following:
+# .venv/
+
+# Ignore the database
+db.sqlite3
+
+# Ignore log and error files
+*.log
+*.log.*
+*.log-*
+*.err
+*.err.*
+
+# Ignore configuration files that may contain sensitive information
+*.ini
+*.conf
+*.env
+
+# Ignore development and local settings files
+*.local
+*.settings
+
+# Ignore database migrations
+**/migrations/
+
+# Ignore secret key files
+*.key
+
+# Ignore IDE-specific files and directories
+.idea/
+.vscode/
+
+# Ignore local development settings
+settings_local.py
+
+# Ignore backup files
+*.bak
+*.swp
+*~
+
+# Ignore environment-specific files
+*.iml
+*.db.sqlite3
+*.sqlite3-journal
+
+# Ignore the macOS .DS_Store files
+.DS_Store
+
+# Ignore system files that might be created on different operating systems
+Thumbs.db
+ehthumbs.db
+
+# Ignore Python coverage files
+.coverage
+
+# Ignore editor temporary files
+*.swo
+
+*.swx
