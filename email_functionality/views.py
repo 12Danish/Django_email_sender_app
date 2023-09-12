@@ -1,2 +1,2 @@
-class DashboardView():
+def dashboard_view():
     pass

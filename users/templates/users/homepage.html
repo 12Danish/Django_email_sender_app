@@ -1,1 +1,26 @@
 {% extends 'layout.html' %}
+
+{% block head %}
+<title>Homepage</title>
+{% endblock %}
+
+{% block body %}
+<h1>Hey</h1>
+
+<div>If you are a new user. Click Here:
+<a href="{% url 'users:register' %}">
+    <button>
+        Register
+    </button>
+</a>
+</div>
+<br>
+<br>
+<div>Already have an account. Click Here:
+<a href="{% url 'users:login' %}">
+    <button>
+        Login
+    </button>
+</a>
+</div>
+{% endblock %}

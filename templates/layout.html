@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    {% block head %}
     {% load static %}
-    <link rel="stylesheet"type="text/css" href="{% static 'css/style.css' %}" >
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" >
+
+    {% block head %}
     {% endblock %}
 </head>
 <body>
