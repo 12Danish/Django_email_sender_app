@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% block head %}
+<title>Dashboard</title>
+{% endblock %}
+
+{% block body %}
+<h1>Welcome!</h1>
+{% if mails %}
+<ul>
+    {% for mail in mails %}
+    <li>{{mail.subject}}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<h2>You have sent no mails.Click here to send some</h2>
+<a href="{% url 'email_functionality:write_mail'%}">
+    <button>
+    Write Mail
+</button>
+</a>
+{% endif %}
+{% endblock %}

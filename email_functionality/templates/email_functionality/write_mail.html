@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block head %}
+<title>Compose</title>
+{% endblock %}
+
+{% block body %}
+<form>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="button" id="Send" value="Send">
+    <input type="button" id="Draft" value="Draft">
+</form>
+{% endblock %}
