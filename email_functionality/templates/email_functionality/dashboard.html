@@ -5,18 +5,25 @@
 
 {% block body %}
 <h1>Welcome!</h1>
-{% if mails %}
+{% if emails %}
+<h1>You have sent the following mails</h1>
 <ul>
-    {% for mail in mails %}
-    <li>{{mail.subject}}</li>
+    {% for mail in emails %}
+
+    <li> <a href="{% url 'email_functionality:details' pk=mail.id %}">
+        {{mail.subject}} :         {{mail.recipient}}  ------------------            {{mail.date_time}}
+    </a>
+    </li>
+
     {% endfor %}
 </ul>
 {% else %}
-<h2>You have sent no mails.Click here to send some</h2>
+<h2>You have sent no mails</h2>.
+{% endif %}
+<h2>Click here to send some</h2>
 <a href="{% url 'email_functionality:write_mail'%}">
     <button>
     Write Mail
 </button>
 </a>
-{% endif %}
 {% endblock %}

@@ -1,9 +1,10 @@
 from django.views.generic import ListView, UpdateView, DeleteView, DetailView
-from .models import Mails
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import FormView
 from .forms import WriteMailForm
 from .models import Mails
+from django.http import HttpResponseRedirect
+from django.shortcuts import reverse
 
 
 class DashboardView(LoginRequiredMixin, ListView):
@@ -29,7 +30,14 @@ class WriteMail(LoginRequiredMixin, FormView):
 
     def form_valid(self, form):
         data = form.cleaned_data
+        Mails.objects.create(user=self.request.user,
+                             subject=data['subject'],
+                             recipient=data['recipient'],
+                             body=data['body'],
+                             status=data['status'],
+                             sender=self.request.user.email)
 
+        return HttpResponseRedirect(reverse('email_functionality:dashboard'))
 
 
 class UpdateMailView(LoginRequiredMixin, UpdateView):
