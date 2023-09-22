@@ -2,10 +2,11 @@
 {% block head %}
 <title>Compose</title>
 {% load static %}
-<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/write_mail_script.js' %}"></script>
 {% endblock %}
 
 {% block body %}
+<!-- Displaying the django-form for writing mail -->
 <form id="myform" method="post">
     {% csrf_token %}
     {{ form.as_p }}

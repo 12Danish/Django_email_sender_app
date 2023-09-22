@@ -6,7 +6,7 @@
 
 {% block body %}
 <h1>Hey</h1>
-
+<!-- Displaying the option to register -->
 <div>If you are a new user. Click Here:
 <a href="{% url 'users:register' %}">
     <button>
@@ -16,6 +16,7 @@
 </div>
 <br>
 <br>
+<!-- Displaying the option to login -->
 <div>Already have an account. Click Here:
 <a href="{% url 'users:login' %}">
     <button>

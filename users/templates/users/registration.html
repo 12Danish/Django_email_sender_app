@@ -5,6 +5,7 @@
 
 {% block body %}
 <form method="post">
+    <!-- Displaying the django-form for registration -->
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit" value="Register">

@@ -21,8 +21,9 @@ class DraftsView(LoginRequiredMixin, ListView):
 
 
 class MailDetailsView(LoginRequiredMixin, DetailView):
-    pass
-
+    model = Mails
+    template_name = 'email_functionality/mail_details.html'
+    context_object_name = 'mail'
 
 class WriteMail(LoginRequiredMixin, FormView):
     template_name = 'email_functionality/write_mail.html'

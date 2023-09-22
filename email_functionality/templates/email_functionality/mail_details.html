@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% block head %}
+<title>Details</title>
+{% endblock %}
+
+{% block body %}
+<!-- Displaying all the details of the mail -->
+<div id="mail_details">
+    <h1>The details of your mail are as under</h1>
+    <div><h4>Sent by: {{mail.user}}</h4></div>
+    <div><h4>Sent to : {{mail.recipient}}</h4></div>
+    <div><h4>Sent on : {{mail.date_time}}</h4></div>
+    <div><h4>Subject : {{mail.subject}}</h4></div>
+    <div><h4>Body : {{mail.body}}</h4></div>
+    <div><h4>Status : The mail is {{mail.status}}</h4></div>
+</div>
+
+<!-- Adding option to go back to update mail -->
+<div id="update">
+    <h4>Click here to Update the mail</h4>
+    <a href="{% url 'email_functionality:update' %}">
+        <button>
+            Update
+        </button>
+    </a>
+</div>
+
+<!-- Adding option to go back to delete the mail -->
+<div id="delete">
+    <h4>Click here to Delete the mail</h4>
+    <a href="{% url 'email_functionality:delete' %}">
+        <button>
+           Delete
+        </button>
+    </a>
+</div>
+
+
+<!-- Adding option to go back to the previous page -->
+<div id="back">
+    <h4>Click here to go back</h4>
+    <a href="{% url 'email_functionality:dashboard' %}">
+        <button>
+            Back
+        </button>
+    </a>
+</div>
+
+
+{% endblock %}
