@@ -64,5 +64,10 @@ ehthumbs.db
 
 # Ignore editor temporary files
 *.swo
-
 *.swx
+
+#Ignoring node_modules directory
+.node_modules/
+
+#Ignoring Json files
+*.json

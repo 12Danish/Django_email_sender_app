@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% block head %}
+<title> Drafts</title>
+{% endblock %}
+
+{% block body %}
+<h1>Drafts</h1>
+
+<!-- This div displays all the mails the user has saved as draft -->
+<div id="drafts_list">
+    <ul>
+        {% for mail in emails %}
+        {% if mail.status == 'draft' %}
+        <li>
+            <a href="{% url 'email_functionality:details' pk=mail.id %}">
+                {{mail.subject}} : {{mail.recipient}} ------------------ {{mail.date_time}}
+            </a>
+        </li>
+        {% endif %}
+        {% empty %}
+        <li><h2>You have no drafts</h2></li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- This div takes user back to previous page -->
+<div id="back">
+    <h3>Click here to go back</h3>
+    <a href="javascript:history.back()">
+        <button>Back</button>
+    </a>
+</div>
+
+
+{% endblock %}

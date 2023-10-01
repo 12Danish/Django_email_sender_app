@@ -1,6 +1,14 @@
 {% extends 'layout.html' %}
 {% block head %}
 <title>Details</title>
+{% load static %}
+<!-- Linking JQuery library for making asynchronous requests -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+
+<!-- Linking my own js file to handle prompts for deleting mails -->
+<script src="{% static 'js/delete_mail.js' %}"></script>
 {% endblock %}
 
 {% block body %}
@@ -26,11 +34,11 @@
 </div>
 
 <!-- Adding option to go back to delete the mail -->
-<div id="delete">
+<div >
     <h4>Click here to Delete the mail</h4>
-    <a href="{% url 'email_functionality:delete' %}">
-        <button>
-           Delete
+    <a id="delete" data-mail-url ="{% url 'email_functionality:delete' pk=mail.id %}" >
+        <button id="delete_button">
+            Delete
         </button>
     </a>
 </div>
@@ -39,8 +47,8 @@
 <!-- Adding option to go back to the previous page -->
 <div id="back">
     <h4>Click here to go back</h4>
-    <a href="{% url 'email_functionality:dashboard' %}">
-        <button>
+    <a href="javascript:history.back()">
+        <button id="back_button">
             Back
         </button>
     </a>
