@@ -57,14 +57,14 @@ class UpdateMailView(LoginRequiredMixin, UpdateView):
     pass
 
 
-class DeleteMailView(DeleteView):
+class DeleteMailView(LoginRequiredMixin, DeleteView):
     model = Mails
     success_url = reverse_lazy('email_functionality:dashboard')
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         self.object.delete()
-        return JsonResponse('Object deleted successfully')
+        return JsonResponse('Object deleted successfully', status=200)
 
 
 def mail_action():

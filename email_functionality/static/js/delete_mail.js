@@ -10,21 +10,23 @@ document.addEventListener('DOMContentLoaded', ()=>{
       const confirmDelete = confirm('Are you sure you want to delete?');
       if(confirmDelete){
          //If user confirms delete action send an ajax request to the server
-         deleteMail(mail_url)
+         const csrfToken = document.querySelector('#csrfToken').value
+         deleteMail(mail_url, csrfToken)
       }
 
    })
 
 })
 
+
 // This function sends an asynchronous request to the server to delete the mail
-function deleteMail(mail_url){
- $.ajax({
+function deleteMail(mail_url, csrfToken){
+   $.ajax({
    // Http request is of type 'Delete'
-   type:'DELETE',
+   type:'POST',
    // Setting the mail url
    url: mail_url,
-   headers : {'X-CSRFToken': csrftoken},
+   headers : {'X-CSRFToken': csrfToken},
 
    // If the operation is successful displaying this msg
    success : ()=> {

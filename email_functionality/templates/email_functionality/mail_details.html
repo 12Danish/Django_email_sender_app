@@ -36,6 +36,7 @@
 <!-- Adding option to go back to delete the mail -->
 <div >
     <h4>Click here to Delete the mail</h4>
+    <input type="hidden" name="csrfmiddlewaretoken" id="csrfToken" value="{% csrf_token %}">
     <a id="delete" data-mail-url ="{% url 'email_functionality:delete' pk=mail.id %}" >
         <button id="delete_button">
             Delete

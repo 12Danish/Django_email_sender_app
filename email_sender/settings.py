@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'users',
+    'users.apps.UsersConfig',
     'email_functionality',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -111,3 +111,4 @@ print(STATICFILES_DIRS)
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'email_functionality:dashboard'
 LOGOUT_REDIRECT_URL = 'users:homepage'
+
