@@ -26,7 +26,7 @@
 <!-- Adding option to go back to update mail -->
 <div id="update">
     <h4>Click here to Update the mail</h4>
-    <a href="{% url 'email_functionality:update' %}">
+    <a href="{% url 'email_functionality:update' pk=mail.id %}">
         <button>
             Update
         </button>
@@ -34,10 +34,10 @@
 </div>
 
 <!-- Adding option to go back to delete the mail -->
-<div >
+<div>
     <h4>Click here to Delete the mail</h4>
     <input type="hidden" name="csrfmiddlewaretoken" id="csrfToken" value="{% csrf_token %}">
-    <a id="delete" data-mail-url ="{% url 'email_functionality:delete' pk=mail.id %}" >
+    <a id="delete" data-mail-url="{% url 'email_functionality:delete' pk=mail.id %}">
         <button id="delete_button">
             Delete
         </button>

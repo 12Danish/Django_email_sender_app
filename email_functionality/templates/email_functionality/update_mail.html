@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block head %}
+<title>Update Mail </title>
+{% load static %}
+<script src="{% static 'js/update_mail.js' %}"></script>
+
+{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Change</button>
+</form>
+
+<!-- Adding option to go back to the previous page -->
+<div id="back">
+    <h4>Click here to go back</h4>
+    <a href="javascript:history.back()">
+        <button id="back_button">
+            Back
+        </button>
+    </a>
+</div>
+{% endblock %}

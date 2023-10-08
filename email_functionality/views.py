@@ -53,8 +53,12 @@ class WriteMail(LoginRequiredMixin, FormView):
         return HttpResponseRedirect(reverse('email_functionality:dashboard'))
 
 
+# This view handles the update functionality
 class UpdateMailView(LoginRequiredMixin, UpdateView):
-    pass
+    model = Mails  # Referring to the model class
+    form_class = WriteMailForm  # referring to the form class
+    template_name = 'email_functionality/update_mail.html'  # name of the template to display
+    success_url = reverse_lazy('email_functionality:dashboard')  # url to redirect
 
 
 class DeleteMailView(LoginRequiredMixin, DeleteView):
@@ -71,5 +75,6 @@ def mail_action():
     pass
 
 
+# This function will handle the action of sending mail
 def send_mail():
     pass
