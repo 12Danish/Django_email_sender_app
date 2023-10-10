@@ -6,6 +6,12 @@
 
 {% block body %}
 
+<!-- Checking if there are any errors -->
+{% if error %}
+<h1>There was and error:
+    Error: {{ error }}</h1>
+{% endif %}
+
 <!-- Displaying all the mails which the user has sent -->
 <div id="mail_list">
     <h1>Welcome!</h1>

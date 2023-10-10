@@ -6,6 +6,7 @@ from .models import Mails
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.http import JsonResponse
+from django.core.mail import send_mail
 
 
 # This view handles the dashboard view
@@ -43,12 +44,25 @@ class WriteMail(LoginRequiredMixin, FormView):
     def form_valid(self, form):  # Handles form_validation
         data = form.cleaned_data  # Getting form data
         # Creating and instance of the model
-        Mails.objects.create(user=self.request.user,
-                             subject=data['subject'],
-                             recipient=data['recipient'],
-                             body=data['body'],
-                             status=data['status'],
-                             sender=self.request.user.email)
+        mail_instance = Mails.objects.create(user=self.request.user,
+                                             subject=data['subject'],
+                                             recipient=data['recipient'],
+                                             body=data['body'],
+                                             status=data['status'],
+                                             sender=self.request.user.email)
+
+        # Calling django's built in send_mail function to send the mail to the email address provided
+        try:
+            send_mail(subject=mail_instance.subject,
+                      message=mail_instance.body,
+                      from_email=mail_instance.sender,
+                      recipient_list=[mail_instance.recipient],
+                      fail_silently=False  # Set this to True if you want to suppress email sending errors
+                      )
+        except Exception as e:
+            return HttpResponseRedirect(reverse('email_functionality:dashboard'),
+                                        {'error': e}
+                                        )
 
         return HttpResponseRedirect(reverse('email_functionality:dashboard'))
 
@@ -72,9 +86,4 @@ class DeleteMailView(LoginRequiredMixin, DeleteView):
 
 
 def mail_action():
-    pass
-
-
-# This function will handle the action of sending mail
-def send_mail():
     pass
