@@ -9,6 +9,8 @@
 
 <!-- Linking my own js file to handle prompts for deleting mails -->
 <script src="{% static 'js/delete_mail.js' %}"></script>
+
+<script> var csrfToken = '{{ csrf_token }}'</script>
 {% endblock %}
 
 {% block body %}
@@ -36,12 +38,12 @@
 <!-- Adding option to go back to delete the mail -->
 <div>
     <h4>Click here to Delete the mail</h4>
-    <input type="hidden" name="csrfmiddlewaretoken" id="csrfToken" value="{% csrf_token %}">
-    <a id="delete" data-mail-url="{% url 'email_functionality:delete' pk=mail.id %}">
+    {% csrf_token %}
+    <input type="hidden" id="delete" data-mail-url="{% url 'email_functionality:delete' pk=mail.id %}">
         <button id="delete_button">
             Delete
         </button>
-    </a>
+
 </div>
 
 

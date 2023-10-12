@@ -7,6 +7,8 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.http import JsonResponse
 from django.core.mail import send_mail
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
 
 
 # This view handles the dashboard view
@@ -75,14 +77,21 @@ class UpdateMailView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('email_functionality:dashboard')  # url to redirect
 
 
-class DeleteMailView(LoginRequiredMixin, DeleteView):
-    model = Mails
-    success_url = reverse_lazy('email_functionality:dashboard')
+@login_required
+def delete_mail(request, pk):
+    if request.method == 'POST':
+        # Filter the mail instance based on the logged-in user
+        mail_instance = get_object_or_404(Mails, id=pk, user=request.user)
 
-    def delete(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        self.object.delete()
-        return JsonResponse('Object deleted successfully', status=200)
+        # Deleting the selected mail
+        mail_instance.delete()
+
+        # Returning a JSON response with a success message
+        return JsonResponse(
+            {'message': 'The mail was deleted successfully', 'redirect_url': reverse('email_functionality:dashboard')})
+    else:
+        # Returning a JSON response with the error
+        return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 
 def mail_action():
