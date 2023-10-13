@@ -7,7 +7,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
    deleteButton.addEventListener('click', ()=>{
       // Ask for confirmation
-      const confirmDelete = confirm('Are you sure you want to delete?');
+      const confirmDelete = confirm(` 
+      This wont actually delete the mail from the user\'s inbox but
+      send a request to the recepient to ignore the last mail sent.`);
       if(confirmDelete){
          //If user confirms delete action send an ajax request to the server
          deleteMail(mail_url, csrfToken)

@@ -55,17 +55,12 @@ class WriteMail(LoginRequiredMixin, FormView):
 
         # Calling django's built in send_mail function to send the mail to the email address provided
         try:
-            send_mail(subject=mail_instance.subject,
-                      message=mail_instance.body,
-                      from_email=mail_instance.sender,
-                      recipient_list=[mail_instance.recipient],
-                      fail_silently=False  # Set this to True if you want to suppress email sending errors
-                      )
+            send_email(mail_instance)
         except Exception as e:
             return HttpResponseRedirect(reverse('email_functionality:dashboard'),
                                         {'error': e}
                                         )
-
+        # Redirecting to the dashboard view
         return HttpResponseRedirect(reverse('email_functionality:dashboard'))
 
 
@@ -75,6 +70,25 @@ class UpdateMailView(LoginRequiredMixin, UpdateView):
     form_class = WriteMailForm  # referring to the form class
     template_name = 'email_functionality/update_mail.html'  # name of the template to display
     success_url = reverse_lazy('email_functionality:dashboard')  # url to redirect
+
+    def form_valid(self, form):
+        # Getting the updated subject
+        updated_subject = form.cleaned_data['subject']
+        # getting the updated body
+        updated_body = form.cleaned_data['body']
+
+        # Getting the existing mail
+        mail_instance = self.get_object()
+        mail_instance.subject = f'{updated_subject} (edited)'
+        mail_instance.body = updated_body
+
+        # Saving the changes within my database
+        mail_instance.save()
+
+        # Sending the updated mail to the recipient
+        send_email(mail_instance)
+        # Returning this so that the default behaviour of updating also takes place
+        return super().form_valid(form)
 
 
 @login_required
@@ -94,5 +108,10 @@ def delete_mail(request, pk):
         return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 
-def mail_action():
-    pass
+def send_email(mail_instance):
+    send_mail(subject=mail_instance.subject,
+              message=mail_instance.body,
+              from_email=mail_instance.sender,
+              recipient_list=[mail_instance.recipient],
+              fail_silently=False  # Set this to True if you want to suppress email sending errors
+              )

@@ -7,6 +7,8 @@
 {% endblock %}
 <!-- Displaying the django form -->
 {% block body %}
+<h1>Update Mail</h1>
+<p>Note:This wont update the old mail but send another updated version of the mail with '(edited)' in the subject </p>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
