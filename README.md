@@ -1,2 +1,4 @@
 # email_sender
-This project is under development right now
+This app allows users to create accounts. Send mails. Send Updated versions and delete requests.
+
+Directory structure:
