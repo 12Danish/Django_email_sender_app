@@ -1,5 +1,6 @@
-
-#Directory Strucutre 
+## Email_sender app:
+**Concept**: This app uses Django for its backend function and employs javascript and html for its front end. You can send, update, delete and view mails with this.
+## Directory Strucutre 
 - **manage.py**: The main Django file which is run.
 - **Email functionality**:
   - __init__.py
@@ -42,3 +43,13 @@
     - **update_mail.html**
     - **write_mail.html**
 - **.gitignore**: Contains files/directories to ignore.
+
+## Setup Instructions
+
+1. **Pull this project** into your directory where you have Django installed.
+
+2. In the `settings.py` file, you'll need to configure the following settings:
+   ```python
+   EMAIL_HOST_USER = 'your-email'
+   EMAIL_HOST_PASSWORD = 'token'
+   
