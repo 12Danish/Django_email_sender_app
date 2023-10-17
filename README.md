@@ -1,3 +1,5 @@
+
+#Directory Strucutre 
 - **manage.py**: The main Django file which is run.
 - **Email functionality**:
   - __init__.py
